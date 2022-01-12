@@ -16,6 +16,18 @@ namespace ControllersAndActions.Controllers
             ViewBag.Message = data;
             return View("MyView");
         }
+
+        public void ProduceOutput()
+        {
+            if (Server.MachineName == "TINY")
+            {
+                Response.Redirect("/Basic/Index");
+            }
+            else
+            {
+                Response.Write("Controller: Derived, Action: ProduceOutput");
+            }
+        }
         /*
         public ActionResult RenameProduct()
         {

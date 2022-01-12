@@ -16,7 +16,17 @@ namespace ControllersAndActions.Controllers
             string data = requestContext.HttpContext.Request.UserHostAddress;
             var addData = requestContext.HttpContext.Request.ServerVariables["HTTP_HOST"];
 
-            requestContext.HttpContext.Response.Write(string.Format("Data: {0}",addData ));
+
+            if (action.ToLower() == "redirect")
+            {
+                requestContext.HttpContext.Response.Redirect("/Derived/Index");
+            }
+            else
+            {
+                requestContext.HttpContext.Response.Write(string.Format("Controller: {0}, Action: {1}", controller, action));
+            }
+
+            // requestContext.HttpContext.Response.Write(string.Format("Data: {0}",addData ));
             // requestContext.HttpContext.Response.Write(string.Format("Controller: {0}, Action: {1}", controller, action));
         }
     }
