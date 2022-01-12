@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ControllersAndActions.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,17 +18,23 @@ namespace ControllersAndActions.Controllers
             return View("MyView");
         }
 
-        public void ProduceOutput()
+        public ActionResult ProduceOutput()
         {
             if (Server.MachineName == "TINY")
             {
-                Response.Redirect("/Basic/Index");
+                // MVC Version
+                // return new RedirectResult("/Basic/Index");
+
+                // Custom
+                return new CustomRedirectResult { Url = "/Basic/Index" };
             }
             else
             {
-                Response.Write("Controller: Derived, Action: ProduceOutput");
+                Response.Write("Controller: Derived, Action:ProduceOutput");
+                return null;
             }
         }
+
         /*
         public ActionResult RenameProduct()
         {
